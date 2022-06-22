@@ -2,6 +2,8 @@ body{
   background-image: url('img/wyI6X0.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 85vh;
+  background-position: left;
 }
 
 .outer{
@@ -25,9 +27,9 @@ h1{
   background-color: transparent;
   border-color: transparent;
   color: aliceblue;
-  width: 85%;
-  border-radius: 5px;
-  padding-left: 29px;
+  width: 80%;
+  border-radius: 7px;
+  /* padding-left: 29px; */
   height: 30px;
   outline: none;
   font-size: large;
@@ -35,27 +37,39 @@ h1{
 
 }
 #pass{
-  margin-top: 22px;
+  /* margin-top: 22px; */
   background-color: transparent;
   border-color: transparent;
   color: aliceblue;
-  width: 45%;
-  border: 1px solid #50606e;
-  border-radius: 5px;
+  width: 75%;
+  /* border: 1px solid #50606e; */
+  border-radius: 7px;
   height: 30px;
   outline: none;
   font-size: large;
+  /* padding-left: 29px; */
 
 }
 #logo{
   padding-top: 9px;
   padding-right: 5px;
-  padding-left: 5px;
-  position: fixed;
+  padding-left: 14px;
+  position:relative
 }
 .icoemail{
   border: 1px solid #50606e;
-  width:45%;
+  width:50%;
   border-radius: 5px;
 }
-
+.passico{
+  margin-top: 25px;
+  border: 1px solid #50606e;
+  width:50%;
+  border-radius: 5px;
+}
+#logo1{
+  padding-top: 9px;
+  padding-right: 5px;
+  padding-left: 14px;
+  position: relative;
+}
