@@ -1,6 +1,7 @@
 import React from 'react'
+import logo from "../img/logo.png"
 
-export default function Handlelogin() {
+export default function Handlelogin(props) {
   return (
     <><div className="container">
         <div className="outer">
@@ -8,9 +9,9 @@ export default function Handlelogin() {
             <span id='span'>Login to manage your account</span>
             <nav className="navbar">
                 <div className="icoemail">
-                <img height="150px" width="150px" src="email-13762.png" alt="" />
-                <label htmlFor='email'></label>
-                <input type="text" placeholder='Enter your email' id='email' />
+                  <img id='logo' height="20px" width="22px" src={logo} alt="" />
+                  <label htmlFor='email'></label>
+                  <input type="text" maxLength="40" placeholder='Enter your email' id='email' />
                 </div>
                 <label htmlFor='password'></label>
                 <input type="password" id='pass' />

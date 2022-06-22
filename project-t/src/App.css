@@ -21,16 +21,18 @@ h1{
   font-family:'Nunito', sans-serif;
 }
 #email{
-  margin-top: 22px;
+  /* margin-top: 22px; */
   background-color: transparent;
   border-color: transparent;
   color: aliceblue;
-  width: 45%;
-  /* border: 1px solid #50606e; */
+  width: 85%;
   border-radius: 5px;
+  padding-left: 29px;
   height: 30px;
+  outline: none;
   font-size: large;
   font-family:'Nunito', sans-serif;
+
 }
 #pass{
   margin-top: 22px;
@@ -41,6 +43,19 @@ h1{
   border: 1px solid #50606e;
   border-radius: 5px;
   height: 30px;
+  outline: none;
+  font-size: large;
 
+}
+#logo{
+  padding-top: 9px;
+  padding-right: 5px;
+  padding-left: 5px;
+  position: fixed;
+}
+.icoemail{
+  border: 1px solid #50606e;
+  width:45%;
+  border-radius: 5px;
 }
 
