@@ -97,3 +97,156 @@ h1{
 #error2{
   color:#f1473ae0 ;
 }
+@media screen and (max-width: 1400px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 40px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 30%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+  .btn{
+    background-color: #f1473ae0;
+    color: #bfd7ed;
+    border: 1px solid #f1473ae0;
+    border-radius: 13px;
+    margin-top: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1090px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 40%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+
+}
+@media screen and (max-width: 726px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 50%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+
+}
+@media screen and (max-width: 436px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 60%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+
+}
+@media screen and (max-width: 396px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 70%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+}
+@media screen and (max-width: 311px) {
+  .icoemail{
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .passico{
+    margin-top: 25px;
+    border: 1px solid #50606e;
+    width:90%;
+    border-radius: 5px;
+  }
+  .outer{
+    margin: auto;
+    padding-top: 80px;
+    padding-left: 30px;
+    margin-top: 150px;
+    border-radius: 25px;
+    width: 80%;
+    height: 390px;
+    background-color: #a1b3c31a;
+  }
+}
