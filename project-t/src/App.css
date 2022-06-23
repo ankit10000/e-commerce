@@ -125,7 +125,7 @@ h1{
     border-radius: 25px;
     width: 30%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
   .btn{
     background-color: #f1473ae0;
@@ -167,7 +167,7 @@ h1{
     border-radius: 25px;
     width: 40%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
 
 }
@@ -198,7 +198,7 @@ h1{
     border-radius: 25px;
     width: 50%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
 
 }
@@ -229,7 +229,7 @@ h1{
     border-radius: 25px;
     width: 60%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
 
 }
@@ -253,7 +253,7 @@ h1{
     border-radius: 25px;
     width: 70%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
 }
 @media screen and (max-width: 311px) {
@@ -276,6 +276,6 @@ h1{
     border-radius: 25px;
     width: 80%;
     height: 390px;
-    background-color: #a1b3c31a;
+    background-color: #96abbd87;
   }
 }
