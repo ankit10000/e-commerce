@@ -98,6 +98,9 @@ h1{
 #error2{
   color:#f1473ae0 ;
 }
+#error3{
+  color:#f1473ae0 ;
+}
 @media screen and (max-width: 1400px) {
   html{
     background-image: url('img/background.jpg');
