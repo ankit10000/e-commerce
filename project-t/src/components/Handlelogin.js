@@ -9,7 +9,7 @@ export default function Handlelogin() {
   const [email, setEmail] = useState(''); 
 
   const [error, setError] = useState(null);
-  const [error1, setError1] = useState(null);
+  // const [error1, setError1] = useState(null);
   const [error2, setError2] = useState('');
 
 
@@ -24,11 +24,7 @@ export default function Handlelogin() {
       setError('Please enter valide email')
     }
     else{
-        // setError('');
-        setTimeout(() => {
-          setError1(null)
-        }, 2000);
-        setError1('Verified email');
+        setError('');
       }
   }
 
@@ -56,7 +52,7 @@ export default function Handlelogin() {
                   <input type="text" maxLength="40" placeholder='Enter your email' id='email' onChange={checkEmail} required/>
                 </div>
                   <span id='error'>{error}</span>
-                  <span id='error1'>{error1}</span>
+                  {/* <span id='error1'>{error1}</span> */}
                   <span id='error2'>{error2}</span>
                 <div className="passico">
                   <img id='logo1' height="20px" width="22px" src={logo1} alt="" />
