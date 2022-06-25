@@ -5,17 +5,16 @@ import logo from "../img/logo.png"
 import logo1 from "../img/passlogo.png"
 
 export default function Handlelogin() {
-  const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
-  const regexpass = /^[a-zA-Z0-9]+(?:[a-zA-Z0-9])+$/;
+  const regex = /[A-Za-z0-9._]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]/;
+  const regexpass = /[A-Za-z0-9!@#$%^&*-]{5,}/;
 
   const [email, setEmail] = useState(''); 
-  const [password, setPassword] = useState(''); 
+  const [password, setPassword] = useState('');
 
   const [error, setError] = useState(null);
   const [error1, setError1] = useState(null);
   const [error3, setError3] = useState(null);
   const [error2, setError2] = useState(null);
-
 
 
 
@@ -31,6 +30,7 @@ export default function Handlelogin() {
       setTimeout(() => {
         setError1("Valide email")
       }, 1000);
+      
       setTimeout(() => {
         setError1(null)
       }, 1500);
@@ -46,7 +46,7 @@ export default function Handlelogin() {
     setPassword(event.target.value);
     if(regexpass.test(password)===false){
       setTimeout(() => {
-        setError(null)
+      setError(null)
       }, 800);
       setError3('Please enter valide password')
     }
@@ -63,8 +63,18 @@ export default function Handlelogin() {
 
   const onSubmit=()=>{   
     if(email!==''){
-      alert("Thankyou Mr/Miss " + email)
+        if(regex.test(email)===false){
+          setTimeout(() => {
+            setError(null)
+          }, 500);
+          setError('Please enter valide email')
+        }
+        else{
+          alert("Thankyou Mr/Miss " + email)
+        }
     }
+
+    
     else{
       setTimeout(() => {
         setError2(null)
@@ -91,7 +101,7 @@ export default function Handlelogin() {
                 <div className="passico">
                   <img id='logo1' height="20px" width="22px" src={logo1} alt="" />
                   <label htmlFor='password'></label>
-                  <input minLength="8" maxLength="8" placeholder='Enter you password'onChange={checkPassword} type="password" id='pass' required/>
+                  <input minLength="4" maxLength="10" placeholder='Enter you password'onChange={checkPassword} type="password" id='pass' required/>
                 </div>
                   <span id='error3'>{error3}</span>
                 <button className='btn' type="submit" onClick={onSubmit}>Submit</button>
