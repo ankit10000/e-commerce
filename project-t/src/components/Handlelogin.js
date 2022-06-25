@@ -88,7 +88,7 @@ export default function Handlelogin() {
         <div className="outer">
             <h1><span>Sign in</span></h1>
             <span id='span'>Login to manage your account</span>
-            {/* <form> */}
+            <form onSubmit={onSubmit}>
             <nav className="navbar">
                 <div className="icoemail">
                   <img id='logo' height="20px" width="22px" src={logo} alt="" />
@@ -104,9 +104,9 @@ export default function Handlelogin() {
                   <input minLength="4" maxLength="10" placeholder='Enter you password'onChange={checkPassword} type="password" id='pass' required/>
                 </div>
                   <span id='error3'>{error3}</span>
-                <button className='btn' type="submit" onClick={onSubmit}>Submit</button>
+                <button className='btn' type="submit" >Submit</button>
             </nav>
-            {/* </form> */}
+            </form>
         </div>
     </div>
     </>
