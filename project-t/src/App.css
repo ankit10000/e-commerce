@@ -8,13 +8,21 @@ html {
 }
 
 .navbar {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
-
+.headersignup {
+  display: flex;
+  flex-direction: column;
+}
 .outer {
   margin: auto;
   padding-top: 40px;
   padding-left: 40px;
+  padding-right: 40px;
   margin-top: 150px;
   border-radius: 25px;
   width: 20%;
@@ -26,7 +34,7 @@ html {
   margin: auto;
   padding-top: 30px;
   padding-left: 60px;
-  padding-right: 30px;
+  padding-right: 60px;
   margin-top: 40px;
   border-radius: 25px;
   width: 20%;
@@ -87,7 +95,7 @@ h1 {
   color: aliceblue;
   width: 70%;
   border-radius: 7px;
-  height: 30px;
+  height: 35px;
   outline: none;
   font-size: large;
   font-family: 'Nunito', sans-serif;
@@ -549,7 +557,7 @@ ul {
 .main{
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  /* margin: auto; */
   justify-content: center;
 }
 .box{

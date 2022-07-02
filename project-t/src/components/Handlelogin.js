@@ -11,7 +11,7 @@ export default function Handlelogin() {
 
   const [error, setError] = useState(null);
   const [error1, setError1] = useState(null);
-  const [error3, setError3] = useState(null);
+  // const [error3, setError3] = useState(null);
   const [error2, setError2] = useState(null);
   // const [data, setData] = useState({
   //   email: "",
@@ -116,7 +116,7 @@ export default function Handlelogin() {
                   required
                 />
               </div>
-              <span id="error3">{error3}</span>
+              {/* <span id="error3">{error3}</span> */}
               <button className="btn" type="submit">
                 Submit
               </button>
