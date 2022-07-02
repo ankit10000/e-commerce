@@ -19,9 +19,7 @@ export default function Handlesignup() {
   const [error4, setError4] = useState(null);
   const [error2, setError2] = useState(null);
   // const [error5, setError5] = useState(null);
-  
   //set password confirmation
-
   
   const [input, setInput] = useState({
     password: '',
@@ -140,10 +138,12 @@ export default function Handlesignup() {
     <>
       <div className="container">
         <div className="outer1">
+          <div className="headersignup">
           <h1>
             <span>SignUp</span>
           </h1>
-          <span id="span">Sginup to create a account</span>
+          <span id="span">Signup to create a account</span>
+          </div>
           <form onSubmit={onSubmit}>
             <nav className="navbar">
               <div className="iconumber">
@@ -156,7 +156,7 @@ export default function Handlesignup() {
                   id="username"
                   maxLength="20"
                   placeholder="Enter username"
-                  required
+                  // required
                 />
               </div>
               <div className="icoemail">
@@ -220,7 +220,7 @@ export default function Handlesignup() {
                   value={input.confirmPassword}
                   onChange={onInputChange}
                   onBlur={validateInput}
-                  placeholder="Confirme your password"
+                  placeholder="Confirm your password"
                   type="password"
                   id="pass2"
                   required
