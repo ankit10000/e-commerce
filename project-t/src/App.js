@@ -4,6 +4,7 @@ import Handlelogin from './components/Handlelogin';
 import Handlesignup from './components/Handlesignup';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import Logout from './components/Logout';
 // import ValidatedLoginForm from "./components/ValidatedLoginForm";
 import {
   BrowserRouter as Router,
@@ -22,6 +23,7 @@ function App() {
        <Route exact path="/signup" element={<Handlesignup/>}/>
        <Route exact path="/signin" element={<Handlelogin/>}/>
        <Route exact path="/profile" element={<Profile/>}/>
+       <Route exact path="/logout" element={<Logout/>}/>
        <Route path="/" element={<Home/>}/>
        {/* <Route path="/login" element={<ValidatedLoginForm/>}/> */}
       {/* <Route path="/alert" element={<Alert/>}/> */}

@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv")
 const express = require("express");
 const app = express();
+const cookieParser = require('cookie-parser')
 
 dotenv.config({path: './config.env'});
 require("./conn")
+app.use(cookieParser())
 app.use(express.json());
 app.use(require("./router/auth"));
 

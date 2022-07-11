@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import photo1 from "../img/11.jpg";
 import photo2 from "../img/22.jpg";
 import photo3 from "../img/33.jpg";
@@ -8,10 +8,42 @@ import photo6 from "../img/66.jpg";
 
 
 export default function Home() {
+  const [userData, setuserData] = useState("");
+
+  const callProfilePage = async () => {
+    try {
+      const res = await fetch("/userdata", [{
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        
+        credentials: "include",
+      }]);
+      
+      const data = await res.json();
+      setuserData(data);
+      if (!res.status === 401) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+      
+    };
+    
+ 
+  useEffect(() => {
+    callProfilePage();
+  });
+
+
   return (
     <>
     <div className="h1">
-      <h1>Welcome on MYwebsite.....</h1>
+      <h1>Welcome {!userData ? "on my website...":userData.username}</h1>
     </div>
     <div className="main">
       <div className="box">
