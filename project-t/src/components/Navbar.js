@@ -26,6 +26,10 @@ export default function Navbar(props) {
             <ul><li><Link className="a1" to="/signup">Sign Up</Link></li></ul>
             {/* <li><a className="a1" href="/handlesignup">Sign Up</a></li> */}
             </div>
+            <div className="nav">
+            <ul><li><Link className="a1" to="/logout">Logout</Link></li></ul>
+            {/* <li><a className="a1" href="/handlesignup">Sign Up</a></li> */}
+            </div>
         </div>
         
     </>

@@ -1,65 +1,64 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const [userData, setuserData] = useState("");
+
   const navigate = useNavigate();
 
-  const callProfilePage = async () =>{
+  const callProfilePage = async () => {
     try {
-      const res = await fetch('/profile', {
-        method:'GET',
+      const res = await fetch("/profile", [{
+        method: "GET",
         headers: {
           Accept: "application/json",
-          "Content-Type" : "application/json"
+          "Content-Type": "application/json",
         },
-        credentials:"include"
-
-      })
+        credentials: "include",
+      }]);
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
+      setuserData(data);
 
       if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
+        const err = new Error(res.error);
+        throw err;
       }
-
-
     } catch (err) {
-      console.log(err)
-      navigate("/signin")
+      console.log(err);
+      navigate("/signin");
     }
-  }
+  };
 
   useEffect(() => {
-    callProfilePage()
-    });
-  
-  
+    callProfilePage();
+  });
 
   return (
     <>
       <div>
-        <form method='GET' >
+        <form method="GET">
           <div className="container">
             <div className="profilecontainer">
               <div className="innerbox">
                 <div className="getinput">
                   <label htmlFor="username">Username :</label>
-                  <div>w</div>
+                  <div>{userData.username}</div>
                 </div>
                 <div className="getinput">
                   <label htmlFor="email">email :</label>
-                  <div>w</div>
+                  <div>{userData.email}</div>
                 </div>
                 <div className="getinput">
                   <label htmlFor="contactnumber">contactnumber :</label>
-                  <div> w</div>
+                  <div> {userData.contactnumber}</div>
                 </div>
-                <div className="getinput">
+                {/* <div className="getinput">
                   <label htmlFor="password">password :</label>
-                  <div>w</div>
-                </div>
+                  <div>{userData.password}</div>
+                </div> */}
               </div>
             </div>
           </div>

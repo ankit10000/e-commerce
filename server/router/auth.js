@@ -12,23 +12,6 @@ const signup = require('../model/userSchema');
 router.get("/",(req, res) => {
     res.send(`hello world router`)
 });
-// router.post("/signup",(req, res) => {
-//     const {username, email, contactnumber, password, confirmPassword} = req.body;
-//     if (!username || !email || !contactnumber || !password || !confirmPassword) {
-//         return res.status(422).json({error:"please fill the blank input"})
-//     }
-//     Signup.findOne({email:email})
-//     .then((userExist)=>{
-//         if(userExist){
-//             return res.status(422).json({error:"Email Alerady Exist"})
-//         }
-//         const signup = new Signup({username, email, contactnumber, password, confirmPassword});
-
-//         signup.save().then(()=>{
-//             res.status(201).json({massege:"user registered successfully"})
-//         }).catch((err)=>res.status(500).json({error:"failed to registered"}))
-//     }).catch((err)=>{console.log(err);})
-// });
 router.post("/signup", async(req, res) => {
     const {username, email, contactnumber, password, confirmPassword} = req.body;
     if (!username || !email || !contactnumber || !password || !confirmPassword) {
@@ -48,7 +31,7 @@ router.post("/signup", async(req, res) => {
             return res.status(422).json({error:"Username Alerady Exist"})
         }
         
-
+        
         else if(userExistcontactnumber){
             return res.status(422).json({error:"Contact number Alerady Exist"})
         }
@@ -61,8 +44,8 @@ router.post("/signup", async(req, res) => {
             await signup.save();
             res.status(201).json({massege:"user registered successfully"})
         }
-
-
+        
+        
     } catch (err) {
         console.log(err);
     }
@@ -72,26 +55,26 @@ router.post("/signup", async(req, res) => {
 
 router.post("/signin", async(req, res) => {
     try {
-       const {email, password} = req.body;
-       if (!email || !password) {
-        return res.status(400).json({error:"please fill the blank input1"})
+        const {email, password} = req.body;
+        if (!email || !password) {
+            return res.status(400).json({error:"please fill the blank input1"})
         }
+        
+        //email matching
+        
+        const userlogin = await Signup.findOne({email:email});
+        
+        if (userlogin) {
 
-    //email matching
-
-    const userlogin = await Signup.findOne({email:email});
-    
-    if (userlogin) {
-
-        const userIsmatch = await bcrypt.compare(password, userlogin.password)
-        const token = await userlogin.generateAuthToken();
+            const userIsmatch = await bcrypt.compare(password, userlogin.password)
+            const token = await userlogin.generateAuthToken();
         console.log(token);
-
+        //25892000000
         res.cookie("jwtoken", token,{
             expires: new Date(Date.now() + 25892000000),
             httpOnly:true
         })
-
+        
         if (!userIsmatch) {
             res.status(400).json({error: "Invalide credentials"})
         }
@@ -102,16 +85,41 @@ router.post("/signin", async(req, res) => {
     else{
         res.status(400).json({error: "Invalide credentials"})
     }
-
+    
 
    } catch (err) {
-        console.log(err)
-   }
+       console.log(err)
+    }
 })
 
 router.get('/profile', authenticate , (req, res) =>{
-    console.log('hello my world')
+    res.send(req.rootUser)
+})
+router.get('/userdata', authenticate , (req, res) =>{
     res.send(req.rootUser)
 })
 
+
+router.get('/logout', (req, res) =>{
+    console.log("logout page")
+    res.clearCookie('jwtoken',{path:'/'})
+    res.status(200).send("user loged out")
+})
 module.exports = router;
+// router.post("/signup",(req, res) => {
+//     const {username, email, contactnumber, password, confirmPassword} = req.body;
+//     if (!username || !email || !contactnumber || !password || !confirmPassword) {
+//         return res.status(422).json({error:"please fill the blank input"})
+//     }
+//     Signup.findOne({email:email})
+//     .then((userExist)=>{
+//         if(userExist){
+//             return res.status(422).json({error:"Email Alerady Exist"})
+//         }
+//         const signup = new Signup({username, email, contactnumber, password, confirmPassword});
+
+//         signup.save().then(()=>{
+//             res.status(201).json({massege:"user registered successfully"})
+//         }).catch((err)=>res.status(500).json({error:"failed to registered"}))
+//     }).catch((err)=>{console.log(err);})
+// });
