@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import logo1 from "../img/passlogo.png";
+import { UserContext } from "../App";
 
 export default function Handlelogin() {
 
+  const { dispatch} = useContext(UserContext)
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +32,7 @@ export default function Handlelogin() {
       console.log("Invalide credentials")
     }
     else{
+      dispatch({type:"USER", payload:true})
       window.alert("login Successfully")
       console.log("login Successfully")
 
