@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import photo1 from "../img/11.jpg";
 import photo2 from "../img/22.jpg";
 import photo3 from "../img/33.jpg";
 import photo4 from "../img/44.jpg";
 import photo5 from "../img/55.jpg";
 import photo6 from "../img/66.jpg";
+import { UserContext } from "../App";
 
 
 export default function Home() {
+  const { dispatch} = useContext(UserContext)
   const [userData, setuserData] = useState("");
 
   const callProfilePage = async () => {
+    
     try {
       const res = await fetch("/userdata", [{
         method: "GET",
@@ -24,6 +27,8 @@ export default function Home() {
       
       const data = await res.json();
       setuserData(data);
+      dispatch({type:"USER", payload:true})
+
       if (!res.status === 401) {
         const error = new Error(res.error);
         throw error;

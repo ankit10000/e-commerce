@@ -25,7 +25,6 @@ export default function Handlesignup() {
     const { username, email, contactnumber, password, confirmPassword } = input;
 
     const res = await fetch("/signup", {
-      required: true,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +39,7 @@ export default function Handlesignup() {
     });
     const data = await res.json();
 
-    if (data.status === 422 || !data) {
+    if (res.status === 422 || !data) {
       window.alert("Invalide credentials");
     } else {
       window.alert("Registered Successfully");
@@ -60,7 +59,7 @@ export default function Handlesignup() {
             </h1>
             <span id="span">Signup to create a account</span>
           </div>
-          <form method="POST" onSubmit={SubmitData} required>
+          <form method="POST" required>
             <nav className="navbar">
               <div className="iconumber">
                 <img id="logo2" height="20px" width="22px" src={logo2} alt="" />
@@ -138,7 +137,7 @@ export default function Handlesignup() {
                   required
                 />
               </div>
-              <button className="btn" type="submit">
+              <button className="btn" type="submit" onClick={SubmitData}>
                 Submit
               </button>
             </nav>

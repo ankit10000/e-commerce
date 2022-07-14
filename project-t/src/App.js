@@ -6,6 +6,8 @@ import Handlesignup from './components/Handlesignup';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Logout from './components/Logout';
+import Forgotpassword from './components/Forgotpassword';
+import Resetpassword from './components/Resetpassword';
 // import ValidatedLoginForm from "./components/ValidatedLoginForm";
 import {
   BrowserRouter as Router,
@@ -24,6 +26,8 @@ const Routing =()=>{
      <Route exact path="/signin" element={<Handlelogin/>}/>
      <Route exact path="/profile" element={<Profile/>}/>
      <Route exact path="/logout" element={<Logout/>}/>
+     <Route exact path="/reset" element={<Resetpassword/>}/>
+     <Route exact path="/forgot" element={<Forgotpassword/>}/>
      <Route path="/" element={<Home/>}/>
      {/* <Route path="/login" element={<ValidatedLoginForm/>}/> */}
     {/* <Route path="/alert" element={<Alert/>}/> */}
@@ -39,7 +43,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
   <>
   <UserContext.Provider value={{state, dispatch}}>
-    <Router>0
+    <Router>
       <Navbar title="Mywebsite"/>
       <Routing />
      </Router>
