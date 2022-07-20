@@ -1,45 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+// import { useNavigate } from "react-router-dom";
 
 export default function Resetpassword() {
 
-    const navigate = useNavigate();
-    const [input, setInput] = useState({
-      password: "",
-      confirmPassword: "",
-    });
-    let name, value;
-    const handleInputs = (e) => {
-      name = e.target.name;
-      value = e.target.value;
-      setInput({ ...input, [name]: value });
-    };
-  
-    const SubmitData = async (e) => {
-      e.preventDefault();
-      const {password, confirmPassword } = input;
-  
-      const res = await fetch("/reset", {
-        required: true,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password: password,
-          confirmPassword: confirmPassword,
-        }),
-      });
-      const data = await res.json();
-  
-      if (data.status === 200 || !data) {
-        window.alert("Invalide credentials");
-      } else {
-        window.alert("Reset Password Successfully");
-  
-        navigate("/signin");
-      }
-    };
 
 
   return (
@@ -52,7 +15,7 @@ export default function Resetpassword() {
               <span>Reset your password</span>
             </h1>
           </div>
-          <form method="POST"onSubmit={SubmitData} required>
+          <form method="POST" required>
             <nav className="navbar">
               <div className="passico">
                 <label htmlFor="password"></label>
@@ -61,8 +24,8 @@ export default function Resetpassword() {
                   name="password"
                   maxLength="10"
                   autoComplete="on"
-                  onChange={handleInputs}
-                  value={input.password}
+                  // onChange={handleInputs}
+                  // value={input.password}
                   placeholder="Enter your password"
                   type="password"
                   id="pass"
@@ -75,8 +38,8 @@ export default function Resetpassword() {
                   name="confirmPassword"
                   maxLength="10"
                   autoComplete="on"
-                  onChange={handleInputs}
-                  value={input.confirmPassword}
+                  // onChange={handleInputs}
+                  // value={input.confirmPassword}
                   placeholder="Confirm your password"
                   type="password"
                   id="pass2"

@@ -5,6 +5,7 @@ html {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  
 }
 
 .navbar {
@@ -40,6 +41,17 @@ html {
   height: 580px;
   background-color: #96abbd87;
 }
+.outer3 {
+  margin: auto;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 50px;
+  border-radius: 25px;
+  width: 20%;
+  height: 500px;
+  background-color: #96abbd87;
+}
 
 h1 {
   color: aliceblue;
@@ -52,6 +64,17 @@ h1 {
 }
 
 #email {
+  background-color: transparent;
+  border-color: transparent;
+  color: aliceblue;
+  width: 75%;
+  border-radius: 7px;
+  height: 30px;
+  outline: none;
+  font-size: large;
+  font-family: 'Nunito', sans-serif;
+}
+#otp {
   background-color: transparent;
   border-color: transparent;
   color: aliceblue;
@@ -175,6 +198,22 @@ h1 {
   width: 90%;
   font-size: medium;
   cursor: pointer;
+}
+.btn1 {
+  background-color: #f1473ae0;
+  color: #bfd7ed;
+  border: 1px solid #f1473ae0;
+  border-radius: 13px;
+  margin-top: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 30%;
+  cursor: pointer;
+}
+.btn1:hover{
+  background-color: red;
 }
 
 #error {
@@ -658,7 +697,7 @@ h1{
   
 }
 .td{
-  border-bottom: #34a4fb 1px solid;
+  border-bottom: #4a8299 1.5px solid;
   font-family: 'Source Sans', serif;
   font-size: larger;
   padding-left: 70px;
