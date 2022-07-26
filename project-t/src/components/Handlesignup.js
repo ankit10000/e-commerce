@@ -39,9 +39,18 @@ export default function Handlesignup() {
     });
     const data = await res.json();
 
+    if (res.status === 421 || !data) {
+      window.alert("Please fill the blank input");
+    }
     if (res.status === 422 || !data) {
-      window.alert("Invalide credentials");
-    } else {
+      window.alert("Email Alerady Exist");
+    } else if (res.status === 423 || !data) {
+      window.alert("Username Alerady Exist");
+    } else if (res.status === 424 || !data) {
+      window.alert("Contact number Alerady Exist");
+    } else if (res.status === 425 || !data) {
+      window.alert("Password is not match");
+    } else if (res.status === 201 || !data) {
       window.alert("Registered Successfully");
 
       navigate("/");
@@ -71,7 +80,6 @@ export default function Handlesignup() {
                   id="username"
                   maxLength="20"
                   value={input.username}
-                  // onInput={setError}
                   onChange={handleInputs}
                   placeholder="Enter username"
                   required

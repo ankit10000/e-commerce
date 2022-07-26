@@ -5,13 +5,14 @@ const Otp = require("../model/otp");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
-// const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 // const { sendverificationEmail } = require("../config/sendEmail");
 
 require("../conn");
 const signup = require("../model/userSchema");
-const { eventNames, updateMany } = require("../model/otp");
+const { eventNames, updateMany, deleteMany } = require("../model/otp");
 const { config } = require("dotenv");
+const { findOneAndDelete } = require("../model/userSchema");
 
 //signup page
 
@@ -19,14 +20,12 @@ router.post("/signup", async (req, res) => {
   const { username, email, contactnumber, password, confirmPassword } =
     req.body;
   if (!username || !email || !contactnumber || !password || !confirmPassword) {
-    return res.status(422).json({ error: "please fill the blank input" });
+    return res.status(421).json({ error: "please fill the blank input" });
   }
   try {
     const userExistemail = await Signup.findOne({ email: email });
     const userExistusername = await Signup.findOne({ username: username });
-    const userExistcontactnumber = await Signup.findOne({
-      contactnumber: contactnumber,
-    });
+    const userExistcontactnumber = await Signup.findOne({contactnumber: contactnumber,});
     const signup = new Signup({
       username,
       email,
@@ -38,11 +37,11 @@ router.post("/signup", async (req, res) => {
     if (userExistemail) {
       return res.status(422).json({ error: "Email Alerady Exist" });
     } else if (userExistusername) {
-      return res.status(422).json({ error: "Username Alerady Exist" });
+      return res.status(423).send({ error: "Username Alerady Exist" });
     } else if (userExistcontactnumber) {
-      return res.status(422).json({ error: "Contact number Alerady Exist" });
+      return res.status(424).json({ error: "Contact number Alerady Exist" });
     } else if (password != confirmPassword) {
-      return res.status(422).json({ error: "Password is not match" });
+      return res.status(425).json({ error: "Password is not match" });
     } else {
       await signup.save();
       res.status(201).json({ massege: "user registered successfully" });
@@ -56,8 +55,6 @@ router.post("/signup", async (req, res) => {
 
 router.post("/signin", async (req, res) => {
   try {
-    console.log(req.body.email);
-
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: "please fill the blank input1" });
@@ -92,55 +89,47 @@ router.post("/signin", async (req, res) => {
 
 router.post("/sendotp", async (req, res) => {
   try {
-    const data = await Signup.findOne({ email: req.body.email });
+    const { email } = req.body;
+    const data = await Signup.findOne({ email: email });
     const responseType = {};
     if (data) {
       const otpcode = Math.floor(Math.random() * 10000 + 1);
       const otpData = new Otp({
-        email: req.body.email,
+        email: email,
         code: otpcode,
         expireIn: new Date().getTime() + 300 * 1000,
       });
+      const transport = nodemailer.createTransport({
+        host: process.env.NODE_HOST,
+        port: process.env.NODE_PORT,
+        auth: {
+          user: process.env.NODE_USER,
+          pass: process.env.NODE_PASS,
+        },
+      });
+      transport.sendMail({
+        from: "pagalworld.com",
+        to: email,
+        subject: "OTP Authentication",
+        html: `Your OTP code is ${otpcode}`,
+      });
       const otpResponse = await otpData.save();
-      responseType.statusText = "Success";
-      responseType.message = "please check your email id";
+      deleteotpondoc(email);
+      res.status(200).json({ message: "please check your email id" });
     } else {
-      responseType.statusText = "error";
-      responseType.message = "user not found";
+      res.status(400).json({ message: "user not found" });
     }
-    res.status(200).json(responseType);
-    res.status(200).json("okk");
   } catch (error) {
     console.log(error);
   }
 });
 
-//verify otp
-
-// router.post("/verifyotp", async (req, res) => {
-//   const data = Otp.find({email:req.body.email, code:req.body.otpcode});
-//   if (!req.body.email || req.body.otpcode) {
-//     res.status(404).send("Invalid credentials")
-
-//   }
-//   if (data) {
-//     const currentTime = new Date().getTime();
-//     console.log(currentTime)
-//     const diff = data.expireIn - currentTime;
-//     if (diff < 0) {
-//       console.log(diff)
-//       response.message = "Token expire";
-//       response.statusText = "error";
-//     }else{
-
-//       const signup = await Signup.findOne({email:req.body.email})
-//       res.json("email verified with otp")
-//     }
-//   }
-//   else{
-//     res.status(400).send("email not verified with otp")
-//   }
-// });
+const deleteotpondoc = async (email) => {
+  setTimeout(async () => {
+    const result = await Otp.deleteMany({ email: email });
+    console.log(result);
+  }, 120000);
+};
 
 //logout page
 
@@ -166,29 +155,47 @@ router.get("/userdata", authenticate, (req, res) => {
 
 router.post("/change-password", async (req, res) => {
   try {
-    const { email, code, password, confirmPassword } = req.body;
-    if (!email || !code || !password || !confirmPassword) {
+    const { code, email, password, confirmPassword } = req.body;
+    if (!email || !password || !confirmPassword) {
       return res.status(400).json({ error: "fill the blank input filed" });
     }
     const olduser = await Signup.findOne({ email });
-    if (!olduser) {
-      return res.status(400).json({ error: "user is not found" });
-    }
-    const newpassword = await bcrypt.hash(password, 12);
-    const confirmnewPassword = await bcrypt.hash(confirmPassword, 12);
-    const updatepassword = await Signup.findOneAndUpdate(
-      { email },
-      {
-        $set: {
-          password: newpassword,
-          confirmPassword: confirmnewPassword,
-        },
+    if (olduser) {
+      const data = await Otp.find({ email, code });
+      if (data) {
+        const currentTime = new Date().getTime();
+        const diff = data - currentTime;
+        if (diff) {
+          return res.status(401).json({ error: "invalide OTP" });
+        } else {
+          if (password != confirmPassword) {
+            return res.status(402).json({ error: "Password is not match" });
+          } else {
+            const newpassword = await bcrypt.hash(password, 12);
+            const confirmnewPassword = await bcrypt.hash(confirmPassword, 12);
+            const updatepassword = await Signup.findOneAndUpdate(
+              { email },
+              {
+                $set: {
+                  password: newpassword,
+                  confirmPassword: confirmnewPassword,
+                },
+              }
+            );
+            if (updatepassword) {
+              return res
+                .status(200)
+                .json({ message: "Password change successfully" });
+            } else {
+              return res.status(403).json({ error: "password is not change" });
+            }
+          }
+        }
+      } else {
+        return res.status(404).json({ error: "user not found" });
       }
-    );
-    if (updatepassword) {
-      return res.status(200).json({ message: "Password change successfully" });
     } else {
-      return res.status(400).json({ error: "password is not change" });
+      return res.status(405).json({ error: "user is not found" });
     }
   } catch (error) {
     console.log(error);
@@ -196,47 +203,3 @@ router.post("/change-password", async (req, res) => {
 });
 
 module.exports = router;
-// router.post("/signup",(req, res) => {
-//     const {username, email, contactnumber, password, confirmPassword} = req.body;
-//     if (!username || !email || !contactnumber || !password || !confirmPassword) {
-//         return res.status(422).json({error:"please fill the blank input"})
-//     }
-//     Signup.findOne({email:email})
-//     .then((userExist)=>{
-//         if(userExist){
-//             return res.status(422).json({error:"Email Alerady Exist"})
-//         }
-//         const signup = new Signup({username, email, contactnumber, password, confirmPassword});
-
-//         signup.save().then(()=>{
-//             res.status(201).json({massege:"user registered successfully"})
-//         }).catch((err)=>res.status(500).json({error:"failed to registered"}))
-//     }).catch((err)=>{console.log(err);})
-// });
-
-// router.post("/email-send", async (req, res) => {
-//   try {
-//     const data = await Signup.findOne({ email:req.body.email });
-//     const responseType = {};
-//     if(data){
-//       const otpcode = Math.floor((Math.random()*10000)+1);
-//       const otpData = new Otp({
-//         email:req.body.email,
-//         code:otpcode,
-//         expireIn:new Date().getTime() + 300*1000
-//       })
-//       const otpResponse = await otpData.save();
-//       responseType.statusText = 'Success'
-//       responseType.message = 'please check your email id'
-//     }
-//     else{
-//       responseType.statusText = 'error'
-//       responseType.message = 'user not found'
-//     }
-//     res.status(200).json(responseType);
-//     res.status(200).json('okk')
-
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })

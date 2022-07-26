@@ -48,7 +48,7 @@ const sendOtp = async (e) =>{
       }, 
       body: JSON.stringify({
         email:email,
-        otpcode:otpcode,
+        code:otpcode,
         password:password,
         confirmPassword:confirmPassword
       }) 
@@ -59,7 +59,21 @@ const sendOtp = async (e) =>{
     if (res.status === 400 || !data) {
       window.alert("Invalid credentials")
     }
-    
+    else if (res.status === 401 || !data) {
+      window.alert("Wrong OTP")
+    }
+    else if (res.status === 402 || !data) {
+      window.alert("Password is not match")
+    }
+    else if (res.status === 403 || !data) {
+      window.alert("Password is not change")
+    }
+    else if (res.status === 404 || !data) {
+      window.alert("Please enter valide email")
+    }
+    else if (res.status === 405 || !data) {
+      window.alert("Please enter valide email")
+    }
     else{
       window.alert("Otp is verify and reset your password")
       navigate("/signin")
