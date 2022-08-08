@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate,Link  } from "react-router-dom";
 import logo from "../img/logo.png";
 import logo1 from "../img/passlogo.png";
+import { UserContext } from "../App";
 
 export default function Handlelogin() {
 
+  const { dispatch} = useContext(UserContext)
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,11 +29,10 @@ export default function Handlelogin() {
 
     if (res.status === 400 || !data) {
       window.alert("Invalide credentials")
-      console.log("Invalide credentials")
     }
     else{
+      dispatch({type:"USER", payload:true})
       window.alert("login Successfully")
-      console.log("login Successfully")
 
       navigate("/")
     }
@@ -47,7 +48,7 @@ export default function Handlelogin() {
             <span>Sign in</span>
           </h1>
           <span id="span">Login to manage your account</span>
-          <form method="POST" action='http://localhost:3001/profile'>
+          <form method="POST">
             <nav className="navbar">
               <div className="icoemail">
                 <img id="logo" height="20px" width="22px" src={logo} alt="" />
@@ -80,6 +81,7 @@ export default function Handlelogin() {
                   required
                 />
               </div>
+              <Link className="a2" aria-current="page" to="/forgot">forgot password</Link>
               <button className="btn" type="submit"onClick={loginUser}>
                 Submit
               </button>

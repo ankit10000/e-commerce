@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 html {
   background-image: url('img/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  
 }
 
 .navbar {
@@ -39,6 +41,17 @@ html {
   height: 580px;
   background-color: #96abbd87;
 }
+.outer3 {
+  margin: auto;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 50px;
+  border-radius: 25px;
+  width: 20%;
+  height: 500px;
+  background-color: #96abbd87;
+}
 
 h1 {
   color: aliceblue;
@@ -51,6 +64,17 @@ h1 {
 }
 
 #email {
+  background-color: transparent;
+  border-color: transparent;
+  color: aliceblue;
+  width: 75%;
+  border-radius: 7px;
+  height: 30px;
+  outline: none;
+  font-size: large;
+  font-family: 'Nunito', sans-serif;
+}
+#otp {
   background-color: transparent;
   border-color: transparent;
   color: aliceblue;
@@ -174,6 +198,22 @@ h1 {
   width: 90%;
   font-size: medium;
   cursor: pointer;
+}
+.btn1 {
+  background-color: #f1473ae0;
+  color: #bfd7ed;
+  border: 1px solid #f1473ae0;
+  border-radius: 13px;
+  margin-top: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 30%;
+  cursor: pointer;
+}
+.btn1:hover{
+  background-color: red;
 }
 
 #error {
@@ -549,6 +589,17 @@ ul {
   align-self: center;
 }
 
+.a2 {
+  /* font-size: large; */
+  color: aliceblue;
+  align-self: flex-end;
+
+}
+.a2:hover {
+  /* text-decoration: none; */
+  
+  color: rgb(255, 23, 23);
+}
 .a1 {
   text-decoration: none;
   font-size: large;
@@ -577,9 +628,24 @@ ul {
   width: 50%;
   border-radius: 20px;
   background-color: rgb(175 199 219 / 28%);
+  /* text-align: center; */
+  padding-top: 40px;
+}
+.profilecontainerh1 h1{
+  margin: auto;
+  text-align: center;
+  font-size:50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 50%;
+  border-radius: 30px;
+  font-family: 'Source Sans pro', serif;
+  background-color: #516a74ad;
+  color: #d4ffdb;
 }
 ::-webkit-scrollbar {
   display: none;
+  
 }
 .img{
   height: 400px;
@@ -616,4 +682,38 @@ h1{
 }
 .getinput{
   display: flex;
+}
+.btn:hover{
+  color: white;
+  background-color: red
+}
+
+.profileinnercontainer{
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  text-align: -webkit-center;
+  color: #003008;
+  
+}
+.td{
+  border-bottom: #4a8299 1.5px solid;
+  font-family: 'Source Sans', serif;
+  font-size: larger;
+  padding-left: 70px;
+}
+.tdu{
+  /* border-bottom: #34a4fb 1px solid; */
+  font-size: larger;
+  padding-right: 70px;
+  
+}
+.r{
+  padding-top: 150px;
+}
+.r1{
+  padding-top: 10px;
+}
+.r2{
+  padding-top: 10px;
 }

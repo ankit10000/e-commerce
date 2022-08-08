@@ -25,7 +25,6 @@ export default function Handlesignup() {
     const { username, email, contactnumber, password, confirmPassword } = input;
 
     const res = await fetch("/signup", {
-      required: true,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,9 +39,18 @@ export default function Handlesignup() {
     });
     const data = await res.json();
 
-    if (data.status === 422 || !data) {
-      window.alert("Invalide credentials");
-    } else {
+    if (res.status === 421 || !data) {
+      window.alert("Please fill the blank input");
+    }
+    if (res.status === 422 || !data) {
+      window.alert("Email Alerady Exist");
+    } else if (res.status === 423 || !data) {
+      window.alert("Username Alerady Exist");
+    } else if (res.status === 424 || !data) {
+      window.alert("Contact number Alerady Exist");
+    } else if (res.status === 425 || !data) {
+      window.alert("Password is not match");
+    } else if (res.status === 201 || !data) {
       window.alert("Registered Successfully");
 
       navigate("/");
@@ -60,7 +68,7 @@ export default function Handlesignup() {
             </h1>
             <span id="span">Signup to create a account</span>
           </div>
-          <form method="POST" onSubmit={SubmitData} required>
+          <form method="POST" required>
             <nav className="navbar">
               <div className="iconumber">
                 <img id="logo2" height="20px" width="22px" src={logo2} alt="" />
@@ -72,7 +80,6 @@ export default function Handlesignup() {
                   id="username"
                   maxLength="20"
                   value={input.username}
-                  // onInput={setError}
                   onChange={handleInputs}
                   placeholder="Enter username"
                   required
@@ -138,7 +145,7 @@ export default function Handlesignup() {
                   required
                 />
               </div>
-              <button className="btn" type="submit">
+              <button className="btn" type="submit" onClick={SubmitData}>
                 Submit
               </button>
             </nav>
