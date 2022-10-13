@@ -7,12 +7,13 @@ import * as Yup from "yup";
 
 const ValidatedLoginForm = () => (
   <Formik
-    initialValues={{ email: "", password: "" }}
-    onSubmit={(values, { setSubmitting }) => {
+    initialValues={{ email: "ankitjangid9197@gmail.com", password: "aaaaaaaaaa" }}
+    onSubmit={(values, { setSubmitting,resetForm }) => {
       setTimeout(() => {
         console.log("Logging in", values);
         setSubmitting(true);
       }, 500);
+      resetForm({values:""})
     }}
     validate={values => {
         let errors = {};
@@ -22,7 +23,7 @@ const ValidatedLoginForm = () => (
           errors.email = "Invalid email address.";
         }
     
-        const passwordRegex = /(?=.*[0-9])/;
+        const passwordRegex = /[A-Za-z0-9!@#$%^&*-]{5,}/;
         if (!values.password) {
           errors.password = "Required";
         } else if (values.password.length < 8) {
@@ -40,7 +41,7 @@ const ValidatedLoginForm = () => (
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Password is too short - should be 8 chars minimum.")
-          .matches(/(?=.*[0-9])/, "Password must contain a number.")
+          .matches(/[A-Za-z0-9!@#$%^&*-]{5,}/, "Password must contain a number.")
       })}
   >
     {props => {
@@ -87,6 +88,7 @@ const ValidatedLoginForm = () => (
                 {/* <input minLength="4" name='password' maxLength="10" placeholder='Enter you password'onChange={checkPassword} type="password" id='pass' required/> */}
                 <input
                 id="pass"
+                autoComplete="on"
                 name="password"
                 type="password"
                 placeholder="Enter your password"
@@ -99,7 +101,6 @@ const ValidatedLoginForm = () => (
               {errors.password && touched.password && (
                 <div id="error3">{errors.password}</div>
                 )}
-              {/* <span id="error3">{error3}</span> */}
               <button className="btn" type="submit" disabled={isSubmitting}>
                 Submit
               </button>
