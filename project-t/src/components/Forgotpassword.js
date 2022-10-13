@@ -3,7 +3,7 @@ import React, {  useState} from "react";
 
 export default function Forgotpassword() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("palrawatajay@gmail.com");
+  const [email, setEmail] = useState("");
   const [input, setInput] = useState({
     otpcode:"",
     password: "",
@@ -47,7 +47,6 @@ const sendOtp = async (e) =>{
         "Content-Type" : "application/json"
       }, 
       body: JSON.stringify({
-        email:email,
         code:otpcode,
         password:password,
         confirmPassword:confirmPassword
@@ -55,7 +54,6 @@ const sendOtp = async (e) =>{
     });
 
     const data = await res.json();
-    console.log(data)
     if (res.status === 400 || !data) {
       window.alert("Invalid credentials")
     }

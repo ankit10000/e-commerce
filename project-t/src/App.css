@@ -620,6 +620,8 @@ ul {
   width: 400px;
   word-wrap: break-word;
   margin: 10px;
+  text-align: center;
+  padding-top: 30px;
 }
 .profilecontainer{
   margin: auto;
@@ -648,8 +650,12 @@ ul {
   
 }
 .img{
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 300px;
+  border-radius: 10px;
+}
+.text{
+  color: #d4ffdb;
 }
 .h1{
   text-align: center;
