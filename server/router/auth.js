@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const Signup = require("../model/userSchema");
+const Thread = require("../model/threadschema");
 const Otp = require("../model/otp");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -51,6 +52,33 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post("/thread", async (req, res) => {
+  const { title, desc } =
+    req.body;
+  if (!title || !desc) {
+    return res.status(421).json({ error: "please fill the blank input" });
+  }
+  try {
+    const usertitle = await Thread.findOne({ title: title });
+    const userdesc = await Thread.findOne({ desc: desc });
+    
+    const thread = new Thread({
+      title,
+      desc
+    });
+
+    if (usertitle) {
+      return res.status(422).json({ error: "title Alerady Exist" });
+    } else if (userdesc) {
+      return res.status(423).send({ error: "desc Alerady Exist" });
+    }
+      await thread.save();
+      res.status(201).json({ massege: "user registered successfully" });
+   
+  } catch (err) {
+    console.log(err);
+  }
+});
 // login page
 
 router.post("/signin", async (req, res) => {

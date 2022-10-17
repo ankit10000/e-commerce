@@ -1,0 +1,107 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import logo2 from "../img/userlogo.png";
+import logo1 from "../img/images.png";
+
+export default function Thread() {
+  const navigate = useNavigate();
+  const [input, setInput] = useState({
+    title: "",
+    desc: "",
+  });
+  let name, value;
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setInput({ ...input, [name]: value });
+  };
+
+  const SubmitData = async (e) => {
+    e.preventDefault();
+    const { title, desc } = input;
+
+    const res = await fetch("/thread", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        desc: desc,
+      }),
+    });
+    const data = await res.json();
+
+    if (res.status === 425 || !data) {
+      window.alert("title is blank");
+    } else if (res.status === 425 || !data) {
+      window.alert("commit is blank");
+    } else if (res.status === 201 || !data) {
+      window.alert("Registered Successfully");
+
+      navigate("/thread");
+    }
+  };
+  useEffect(() => {
+    SubmitData();
+  });
+
+  return (
+    <div>
+      <div className="alert"></div>
+      <div className="container">
+        <div className="outerdesc">
+          <div className="headersignup">
+            <div className="discuss">
+              <div className="discussion">
+                <img id="userdiscuss" height="28px" width="30px" src={logo1} alt="" />
+                
+                  <li>ankit</li>
+                
+              </div>
+            </div>
+            <h1>
+              <span>Start Discussion</span>
+            </h1>
+            <span id="span">Make a Question to know answer</span>
+          </div>
+          <form method="POST" required>
+            <nav className="navbar">
+              <div className="icotitle">
+                <img id="logo2" height="20px" width="22px" src={logo2} alt="" />
+                <label htmlFor="username"></label>
+                <input
+                  type="varchar"
+                  pattern="[A-Za-z0-9]{7,}"
+                  name="title"
+                  id="username"
+                  maxLength="20"
+                  value={input.title}
+                  onChange={handleInputs}
+                  placeholder="Enter title"
+                  required
+                />
+              </div>
+              <div className="icodesc">
+                <label htmlFor="email"></label>
+                <textarea
+                  type="text"
+                  name="desc"
+                  value={input.desc}
+                  onChange={handleInputs}
+                  placeholder="Enter your description"
+                  id="desc"
+                  required
+                />
+              </div>
+
+              <button className="btn" type="submit" onClick={SubmitData}>
+                Click
+              </button>
+            </nav>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

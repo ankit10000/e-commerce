@@ -8,6 +8,8 @@ import Profile from './components/Profile';
 import Logout from './components/Logout';
 import Forgotpassword from './components/Forgotpassword';
 import Resetpassword from './components/Resetpassword';
+import Thread from './components/Thread';
+
 // import ValidatedLoginForm from "./components/ValidatedLoginForm";
 import {
   BrowserRouter as Router,
@@ -23,6 +25,7 @@ const Routing =()=>{
   return (
     <Routes>
      <Route exact path="/signup" element={<Handlesignup/>}/>
+     <Route exact path="/thread" element={<Thread/>}/>
      <Route exact path="/signin" element={<Handlelogin/>}/>
      <Route exact path="/profile" element={<Profile/>}/>
      <Route exact path="/logout" element={<Logout/>}/>
