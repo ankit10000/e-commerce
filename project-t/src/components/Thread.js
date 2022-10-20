@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../img/userlogo.png";
-import logo1 from "../img/images.png";
+import Threadid from './Threadid';
 
 export default function Thread() {
   const navigate = useNavigate();
@@ -15,11 +15,10 @@ export default function Thread() {
     value = e.target.value;
     setInput({ ...input, [name]: value });
   };
-
+  
   const SubmitData = async (e) => {
     e.preventDefault();
     const { title, desc } = input;
-
     const res = await fetch("/thread", {
       method: "POST",
       headers: {
@@ -31,21 +30,22 @@ export default function Thread() {
       }),
     });
     const data = await res.json();
-
+    
+    
     if (res.status === 425 || !data) {
       window.alert("title is blank");
     } else if (res.status === 425 || !data) {
       window.alert("commit is blank");
     } else if (res.status === 201 || !data) {
       window.alert("Registered Successfully");
-
+      
       navigate("/thread");
     }
   };
   useEffect(() => {
-    SubmitData();
-  });
-
+      SubmitData();
+    });
+    
   return (
     <div>
       <div className="alert"></div>
@@ -54,10 +54,7 @@ export default function Thread() {
           <div className="headersignup">
             <div className="discuss">
               <div className="discussion">
-                <img id="userdiscuss" height="28px" width="30px" src={logo1} alt="" />
-                
-                  <li>ankit</li>
-                
+                  <Threadid />
               </div>
             </div>
             <h1>
@@ -71,11 +68,9 @@ export default function Thread() {
                 <img id="logo2" height="20px" width="22px" src={logo2} alt="" />
                 <label htmlFor="username"></label>
                 <input
-                  type="varchar"
-                  pattern="[A-Za-z0-9]{7,}"
+                  type="text"
                   name="title"
                   id="username"
-                  maxLength="20"
                   value={input.title}
                   onChange={handleInputs}
                   placeholder="Enter title"

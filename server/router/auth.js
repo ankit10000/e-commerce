@@ -178,6 +178,22 @@ router.get("/profile", authenticate, (req, res) => {
 router.get("/userdata", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
+// router.get("/threadid",(req, res) => {
+//   Thread.find().then(data => {
+//     res.status(201).json({
+//       student:data
+//     });
+//   }).catch(err=>{
+//     res.status(401).json({
+//       error:err
+//     })
+//   })
+// });
+
+
+router.get("/threadid",(req, res) => {
+  Thread.find().then(foundThreads => res.json(foundThreads))
+});
 
 //password reset
 
