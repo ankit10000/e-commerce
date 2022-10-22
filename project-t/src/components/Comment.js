@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Showcomments from './Showcomments';
 
 export default function Comment() {
@@ -16,6 +16,8 @@ export default function Comment() {
     setInput({ ...input, [name]: value });
   };
   
+  
+
   const SubmitData = async (e) => {
     e.preventDefault();
     try {
@@ -31,7 +33,7 @@ export default function Comment() {
     });
      await res.json();
      
-        window.alert("Registered Successfully");
+        // window.alert("Registered Successfully");
        setInput({
          comment:"",
         })
@@ -49,6 +51,7 @@ export default function Comment() {
       <div className="alert"></div>
       <div className="container">
         <div className="outerdesc">
+              <Link className="backward" to="/thread" >&#60;</Link>
           <div className="headersignup">
             <div className="discuss">
               <div className="discussion">
@@ -58,7 +61,6 @@ export default function Comment() {
             <h1>
               <span>Start Comments</span>
             </h1>
-            <span id="span">Make a Question to know answer</span>
           </div>
           <form method="POST" required>
             <nav className="navbar">
@@ -69,7 +71,7 @@ export default function Comment() {
                   name="comment"
                   value={input.comment}
                   onChange={handleInputs}
-                  placeholder="Enter your description"
+                  placeholder="Enter your comment"
                   id="desc"
                   required
                 />

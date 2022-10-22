@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router-dom';
 
 
 export default function Showcomments() {
@@ -18,8 +17,9 @@ useEffect(()=>{
         
         {
             comments.map(note=>
-                <div className='notes'>
-                    <span><Link to="/comment">{note.comment}</Link></span>
+                <div className='comms'>
+                    <span id='comment'>{note.comment}</span>
+                    <hr />
                 </div>
                 )
         }

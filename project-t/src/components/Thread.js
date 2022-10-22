@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import logo2 from "../img/userlogo.png";
 import Threadid from './Threadid';
 
@@ -47,6 +47,7 @@ export default function Thread() {
       <div className="alert"></div>
       <div className="container">
         <div className="outerdesc">
+        <Link className="backward" to="/" >&#60;</Link>
           <div className="headersignup">
             <div className="discuss">
               <div className="discussion">

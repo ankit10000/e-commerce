@@ -785,12 +785,34 @@ h1{
 #userdiscuss{
   border-radius: 15px;
 }
-/* .note{
-  border: #003008 solid 2px;
-} */
+.note{
+  margin-top: 20px;
+}
 .notes{
   display: flex;
   flex-direction: column;
   border: #50606e solid 2px;
   margin-bottom: 20px;
+}
+.comms{
+  
+  margin-bottom: 20px;
+}
+#comment{
+  font-family: monospace;
+  font-size: x-large;
+}
+.backward{
+  font-size: x-large;
+  background-color: #00ebfde0;
+  border-radius: 50%;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-bottom: 5px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bolder;
+
 }
