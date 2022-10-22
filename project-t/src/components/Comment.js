@@ -1,15 +1,15 @@
 import React, { useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import logo2 from "../img/userlogo.png";
-import Threadid from './Threadid';
+import Showcomments from './Showcomments';
 
-export default function Thread() {
-  const navigate = useNavigate();
+export default function Comment() {
+    const navigate = useNavigate();
   const [input, setInput] = useState({
-    title: "",
-    desc: "",
+    comment: "",
   });
+
   let name, value;
+
   const handleInputs = (e) => {
     name = e.target.name;
     value = e.target.value;
@@ -18,30 +18,32 @@ export default function Thread() {
   
   const SubmitData = async (e) => {
     e.preventDefault();
-    const { title, desc } = input;
-    const res = await fetch("/thread", {
+    try {
+      const { comment } = input;
+    const res = await fetch("/comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: title,
-        desc: desc,
+        comment: comment
       }),
     });
      await res.json();
-      window.alert("Registered Successfully");
-      setInput({
-        title:"",
-        desc:""
-      })
-      navigate("/thread");
-  
+     
+        window.alert("Registered Successfully");
+       setInput({
+         comment:"",
+        })
+        navigate("/comment");
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
   useEffect(() => {
       SubmitData();
     });
-    
   return (
     <div>
       <div className="alert"></div>
@@ -50,35 +52,22 @@ export default function Thread() {
           <div className="headersignup">
             <div className="discuss">
               <div className="discussion">
-                  <Threadid />
+                  <Showcomments />
               </div>
             </div>
             <h1>
-              <span>Start Discussion</span>
+              <span>Start Comments</span>
             </h1>
             <span id="span">Make a Question to know answer</span>
           </div>
           <form method="POST" required>
             <nav className="navbar">
-              <div className="icotitle">
-                <img id="logo2" height="20px" width="22px" src={logo2} alt="" />
-                <label htmlFor="username"></label>
-                <input
-                  type="text"
-                  name="title"
-                  id="username"
-                  value={input.title}
-                  onChange={handleInputs}
-                  placeholder="Enter title"
-                  required
-                />
-              </div>
               <div className="icodesc">
                 <label htmlFor="email"></label>
                 <textarea
                   type="text"
-                  name="desc"
-                  value={input.desc}
+                  name="comment"
+                  value={input.comment}
                   onChange={handleInputs}
                   placeholder="Enter your description"
                   id="desc"
@@ -94,5 +83,5 @@ export default function Thread() {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -789,6 +789,8 @@ h1{
   border: #003008 solid 2px;
 } */
 .notes{
+  display: flex;
+  flex-direction: column;
   border: #50606e solid 2px;
   margin-bottom: 20px;
 }

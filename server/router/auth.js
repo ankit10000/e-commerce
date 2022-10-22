@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const Signup = require("../model/userSchema");
 const Thread = require("../model/threadschema");
+const Comment = require("../model/commentschema");
 const Otp = require("../model/otp");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -10,7 +11,7 @@ const nodemailer = require("nodemailer");
 // const { sendverificationEmail } = require("../config/sendEmail");
 
 require("../conn");
-const signup = require("../model/userSchema");
+// const signup = require("../model/userSchema");
 const { eventNames, updateMany, deleteMany } = require("../model/otp");
 const { config } = require("dotenv");
 const { findOneAndDelete } = require("../model/userSchema");
@@ -52,6 +53,8 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+//post the threads
+
 router.post("/thread", async (req, res) => {
   const { title, desc } =
     req.body;
@@ -67,13 +70,33 @@ router.post("/thread", async (req, res) => {
       desc
     });
 
-    if (usertitle) {
-      return res.status(422).json({ error: "title Alerady Exist" });
-    } else if (userdesc) {
-      return res.status(423).send({ error: "desc Alerady Exist" });
+    if (usertitle && userdesc) {
+      condition
     }
       await thread.save();
       res.status(201).json({ massege: "user registered successfully" });
+   
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//post the comments
+
+router.post("/comment", async (req, res) => {
+  const { comment } =req.body;
+  if (!comment) {
+    return res.status(421).json({ error: "please fill the blank input" });
+  }
+  try {
+    const userComment = await Comment.findOne({ comment: comment });
+    
+    const comments = new Comment({
+      comment,
+    });
+
+    await comments.save();
+    res.status(201).json({ massege: "user registered successfully" });
    
   } catch (err) {
     console.log(err);
@@ -178,21 +201,17 @@ router.get("/profile", authenticate, (req, res) => {
 router.get("/userdata", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
-// router.get("/threadid",(req, res) => {
-//   Thread.find().then(data => {
-//     res.status(201).json({
-//       student:data
-//     });
-//   }).catch(err=>{
-//     res.status(401).json({
-//       error:err
-//     })
-//   })
-// });
 
+//dispay the thread questions
 
 router.get("/threadid",(req, res) => {
   Thread.find().then(foundThreads => res.json(foundThreads))
+});
+
+//display the comments
+
+router.get("/commentid",(req, res) => {
+  Comment.find().then(foundThreads => res.json(foundThreads))
 });
 
 //password reset

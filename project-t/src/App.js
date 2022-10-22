@@ -10,6 +10,7 @@ import Forgotpassword from './components/Forgotpassword';
 import Resetpassword from './components/Resetpassword';
 import Thread from './components/Thread';
 import Threadid from './components/Threadid';
+import Comment from './components/Comment';
 
 // import ValidatedLoginForm from "./components/ValidatedLoginForm";
 import {
@@ -26,6 +27,7 @@ const Routing =()=>{
   return (
     <Routes>
      <Route exact path="/signup" element={<Handlesignup/>}/>
+     <Route exact path="/comment" element={<Comment/>}/>
      <Route exact path="/thread" element={<Thread/>}/>
      <Route exact path="/threadid" element={<Threadid/>}/>
      <Route exact path="/signin" element={<Handlelogin/>}/>
