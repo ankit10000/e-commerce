@@ -20,7 +20,7 @@ const Authenticate = async (req, res, next) => {
 
     } catch (err) {
         res.status(401).send("Unautherised: no token");
-        console.log(err);
+        // console.log(err);
     }
 }
 module.exports = Authenticate;

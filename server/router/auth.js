@@ -4,6 +4,7 @@ const Signup = require("../model/userSchema");
 const Thread = require("../model/threadschema");
 const Comment = require("../model/commentschema");
 const Otp = require("../model/otp");
+const Ques = require("../model/homeschema");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
@@ -53,6 +54,36 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+//Get the QUES on home page
+
+router.get("/homeget", async (req, res) => {
+  Ques.find().then(foundQues => res.json(foundQues))
+})
+
+//Post The QUES on home page
+router.post("/homepost", async (req, res) => {
+  const { title, desc } =
+    req.body;
+  if (!title || !desc) {
+    return res.status(421).json({ error: "please fill the blank input" });
+  }
+  try {
+    const usertitle = await Ques.findOne({ title: title });
+    const userdesc = await Ques.findOne({ desc: desc });
+    
+    const ques = new Ques({
+      title,
+      desc
+    });
+
+      await ques.save();
+      res.status(201).json({ massege: "user inserted data successfully" });
+      
+   
+  } catch (err) {
+    console.log(err);
+  }
+});
 //post the threads
 
 router.post("/thread", async (req, res) => {
@@ -72,6 +103,7 @@ router.post("/thread", async (req, res) => {
 
       await thread.save();
       res.status(201).json({ massege: "user registered successfully" });
+      
    
   } catch (err) {
     console.log(err);
