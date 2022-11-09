@@ -41,6 +41,19 @@ html {
   height: 580px;
   background-color: #96abbd87;
 }
+.outerdesc{
+  margin: auto;
+  padding-top: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 20px;
+  border-radius: 25px;
+  width: 87%;
+  height: 100%;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  background-color: #96abbd87;
+}
 .outer3 {
   margin: auto;
   padding-top: 40px;
@@ -73,6 +86,17 @@ h1 {
   outline: none;
   font-size: large;
   font-family: 'Nunito', sans-serif;
+}
+#desc{
+  background-color: transparent;
+  border-color: transparent;
+  color: aliceblue;
+  width: 97%;
+  border-radius: 7px;
+  height: 110px;
+  outline: none;
+  font-size: large;
+  font-family: 'Nunito', sans-serif; 
 }
 #otp {
   background-color: transparent;
@@ -163,11 +187,24 @@ h1 {
   width: 90%;
   border-radius: 5px;
 }
-
+.icodesc {
+  margin-top: 25px;
+  border: 1px solid #00000096;
+  padding-top: 10px;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+}
 .iconumber {
   margin-top: 25px;
   border: 1px solid #00000096;
   width: 90%;
+  border-radius: 5px;
+}
+.icotitle{
+  margin-top: 25px;
+  border: 1px solid #00000096;
+  width: 100%;
   border-radius: 5px;
 }
 
@@ -287,6 +324,7 @@ h1 {
     background-color: #96abbd87;
 
   }
+  
 
   .btn {
     background-color: #f1473ae0;
@@ -615,13 +653,15 @@ ul {
   justify-content: center;
 }
 .box{
-  border: 1px solid aliceblue;
+  /* border: 1px solid aliceblue; */
   height: 400px;
   width: 400px;
   word-wrap: break-word;
   margin: 10px;
   text-align: center;
   padding-top: 30px;
+  border-radius: 25px;
+  background-color: #50606e77;
 }
 .profilecontainer{
   margin: auto;
@@ -656,6 +696,16 @@ ul {
 }
 .text{
   color: #d4ffdb;
+}
+.main .box .text{
+  display: flex;
+  flex-direction: column;
+} 
+.main .box .text a{
+  text-decoration: none;
+  color: #50fc6f;
+  font-size: x-large;
+  
 }
 .h1{
   text-align: center;
@@ -722,4 +772,59 @@ h1{
 }
 .r2{
   padding-top: 10px;
+}
+.btnhome{
+  background-color: #2252ffe0;
+  color: #bfd7ed;
+  border: 1px solid #2252ffe0;
+  border-radius: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 90%;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.btnhomeclass {
+  margin-top: 35px;
+}
+/* .discussion{
+  display: flex;
+  list-style: none;
+} */
+#userdiscuss{
+  border-radius: 15px;
+}
+.note{
+  margin-top: 20px;
+}
+.notes{
+  display: flex;
+  flex-direction: column;
+  border: #50606e solid 2px;
+  margin-bottom: 20px;
+}
+.comms{
+  
+  margin-bottom: 20px;
+}
+#comment{
+  font-family: monospace;
+  font-size: x-large;
+}
+.backward{
+  font-size: x-large;
+  background-color: #00ebfde0;
+  border-radius: 50%;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-bottom: 5px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bolder;
+
 }

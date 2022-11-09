@@ -38,6 +38,7 @@ export default function Handlesignup() {
       }),
     });
     const data = await res.json();
+    console.log(data)
 
     if (res.status === 421 || !data) {
       window.alert("Please fill the blank input");
