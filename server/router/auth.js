@@ -70,9 +70,6 @@ router.post("/thread", async (req, res) => {
       desc
     });
 
-    if (usertitle && userdesc) {
-      condition
-    }
       await thread.save();
       res.status(201).json({ massege: "user registered successfully" });
    

@@ -59,7 +59,7 @@ export default function Comment() {
               </div>
             </div>
             <h1>
-              <span>Start Comments</span>
+              <span>Start to post comments</span>
             </h1>
           </div>
           <form method="POST" required>
@@ -71,7 +71,7 @@ export default function Comment() {
                   name="comment"
                   value={input.comment}
                   onChange={handleInputs}
-                  placeholder="Enter your comment"
+                  placeholder="Post your comment"
                   id="desc"
                   required
                 />
