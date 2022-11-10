@@ -16,8 +16,8 @@ useEffect(()=>{
     <div className='note'>
         
         {
-            comments.map(note=>
-                <div className='comms'>
+            comments.map((note,i)=>
+                <div className='comms' key={i}>
                     <span id='comment'>{note.comment}</span>
                     <hr />
                 </div>

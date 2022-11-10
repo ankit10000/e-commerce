@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from "react";
+import React, {  useState} from "react";
 import { useNavigate,Link } from "react-router-dom";
 import logo2 from "../img/userlogo.png";
 import Threadid from './Threadid';
 
-export default function Thread() {
+export default function Thread(e) {
   const navigate = useNavigate();
   const [input, setInput] = useState({
     title: "",
@@ -17,8 +17,8 @@ export default function Thread() {
   };
   
   const SubmitData = async (e) => {
-    e.preventDefault();
     const { title, desc } = input;
+    e.preventDefault();
     const res = await fetch("/thread", {
       method: "POST",
       headers: {
@@ -29,18 +29,18 @@ export default function Thread() {
         desc: desc,
       }),
     });
-     await res.json();
-      window.alert("Registered Successfully");
-      setInput({
-        title:"",
-        desc:""
-      })
-      navigate("/thread");
-  
+    await res.json();
+    window.alert("Registered Successfully");
+    setInput({
+      title:"",
+      desc:""
+    })
+    navigate("/thread");
+    
   };
-  useEffect(() => {
-      SubmitData();
-    });
+  // useEffect((e) => {
+  //   SubmitData(e);
+  //   });
     
   return (
     <div>
