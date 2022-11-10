@@ -6,6 +6,7 @@ html {
   background-position: center;
   background-attachment: fixed;
   
+  
 }
 
 .navbar {
@@ -651,6 +652,12 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+}
+div{
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;
+  user-select: none;
 }
 .box{
   /* border: 1px solid aliceblue; */
@@ -662,6 +669,7 @@ ul {
   padding-top: 30px;
   border-radius: 25px;
   background-color: #50606e77;
+  
 }
 .profilecontainer{
   margin: auto;

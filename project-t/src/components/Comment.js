@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useState} from "react";
 import { useNavigate,Link } from "react-router-dom";
 import Showcomments from './Showcomments';
 
@@ -43,9 +43,6 @@ export default function Comment() {
       console.log(error)
     }
   };
-  useEffect(() => {
-      SubmitData();
-    });
   return (
     <div>
       <div className="alert"></div>

@@ -32,7 +32,7 @@ export default function Profile() {
         throw err;
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       navigate("/signin");
     }
   };

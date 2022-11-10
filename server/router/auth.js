@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
   try {
     const userExistemail = await Signup.findOne({ email: email });
     const userExistusername = await Signup.findOne({ username: username });
-    const userExistcontactnumber = await Signup.findOne({contactnumber: contactnumber,});
+    const userExistcontactnumber = await Signup.findOne({ contactnumber: contactnumber, });
     const signup = new Signup({
       username,
       email,
@@ -70,16 +70,16 @@ router.post("/homepost", async (req, res) => {
   try {
     const usertitle = await Ques.findOne({ title: title });
     const userdesc = await Ques.findOne({ desc: desc });
-    
+
     const ques = new Ques({
       title,
       desc
     });
 
-      await ques.save();
-      res.status(201).json({ massege: "user inserted data successfully" });
-      
-   
+    await ques.save();
+    res.status(201).json({ massege: "user inserted data successfully" });
+
+
   } catch (err) {
     console.log(err);
   }
@@ -95,16 +95,16 @@ router.post("/thread", async (req, res) => {
   try {
     const usertitle = await Thread.findOne({ title: title });
     const userdesc = await Thread.findOne({ desc: desc });
-    
+
     const thread = new Thread({
       title,
       desc
     });
 
-      await thread.save();
-      res.status(201).json({ massege: "user registered successfully" });
-      
-   
+    await thread.save();
+    res.status(201).json({ massege: "user registered successfully" });
+
+
   } catch (err) {
     console.log(err);
   }
@@ -113,20 +113,20 @@ router.post("/thread", async (req, res) => {
 //post the comments
 
 router.post("/comment", async (req, res) => {
-  const { comment } =req.body;
+  const { comment } = req.body;
   if (!comment) {
     return res.status(421).json({ error: "please fill the blank input" });
   }
   try {
     const userComment = await Comment.findOne({ comment: comment });
-    
+
     const comments = new Comment({
       comment,
     });
 
     await comments.save();
     res.status(201).json({ massege: "user registered successfully" });
-   
+
   } catch (err) {
     console.log(err);
   }
@@ -233,13 +233,16 @@ router.get("/userdata", authenticate, (req, res) => {
 
 //dispay the thread questions
 
-router.get("/threadid",(req, res) => {
+router.get("/threadid", async (req, res) => {
+  const { title, desc } = req.body;
+  const usertitle = await Ques.findOne({ title: title });
+  const userdesc = await Ques.findOne({ desc: desc });
   Thread.find().then(foundThreads => res.json(foundThreads))
 });
 
 //display the comments
 
-router.get("/commentid",(req, res) => {
+router.get("/commentid", (req, res) => {
   Comment.find().then(foundThreads => res.json(foundThreads))
 });
 

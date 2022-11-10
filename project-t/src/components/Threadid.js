@@ -19,8 +19,8 @@ useEffect(()=>{
     <div className='note'>
         
         {
-            threads.map(note=>
-                <div className='notes'>
+            threads.map((note,i)=>
+                <div className='notes' key={i}>
                     <img id="userdiscuss" height="28px" width="30px" src={logo1} alt="" />
                     <span><Link to="/comment">{note.title}</Link></span>
                     <span>{note.desc}</span>
