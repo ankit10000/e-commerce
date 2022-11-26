@@ -655,7 +655,7 @@ ul {
 
 }
 div{
-  -webkit-user-select: none; /* Safari */
+  -webkit-user-select: none; 
   -ms-user-select: none;
   user-select: none;
 }
@@ -701,6 +701,9 @@ div{
   height: 200px;
   width: 300px;
   border-radius: 10px;
+}
+.img:hover{
+  transform: scale(1.1);
 }
 .text{
   color: #d4ffdb;
