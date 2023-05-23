@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
 import styled from "styled-components"
+import Useractions from "./Useractions";
 
 const Header = () => {
   return (
@@ -10,6 +11,7 @@ const Header = () => {
         <div className="logo-text">gocart</div>
       </NavLink>
       <Navbar />
+      <Useractions />
       
     </MainHeader>
   )
@@ -19,6 +21,10 @@ const Header = () => {
   text-decoration: none;
   background-color: #d6ebff;
   border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
     padding: 0 4.8rem;
     height: 4rem;
     

@@ -1,10 +1,15 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
+import styled from "styled-components"
 
 const Services = () => {
   return (
-    <div>Services</div>
+    <WRAPPER>
+      <div className="services">Services</div>
+    </WRAPPER>
   )
 }
+const WRAPPER =styled.section`
+  height: 500px;
+  text-align: center;
 
+`;
 export default Services
