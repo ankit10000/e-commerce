@@ -9,14 +9,11 @@ import "./App.css"
 import Login from './user/Login';
 import Register from './user/Register';
 import ErrorPage from './ErrorPage';
-// import { ThemeProvider } from 'styled-components';
 
 
 const App = () => {
   return (
     <>
-    
-    {/* <ThemeProvider theme={theme}> */}
     <BrowserRouter>
     <Header />
       <Routes>
@@ -32,7 +29,6 @@ const App = () => {
       </Routes>
     <Footer />
     </BrowserRouter>
-    {/* </ThemeProvider> */}
     </>
   )
 }

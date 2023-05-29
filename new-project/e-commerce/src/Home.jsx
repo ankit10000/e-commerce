@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Imageslider from './components/Imageslider';
 import ScrollToTop from "react-scroll-to-top"
 // import Data from '../database.json';
-const home = () => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
   const getData = () => {
     var requestOptions = {
@@ -42,4 +42,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
